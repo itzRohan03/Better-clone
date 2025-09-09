@@ -1,18 +1,20 @@
-import MortgageCalculator from "@/components/MortgageCalculator";
+"use client";
 
-export const metadata = {
-  title: "Mortgage Calculator — Better Clone",
-};
+import { Suspense } from "react";
+import MortgageCalculator from "@/components/MortgageCalculator";
 
 export default function CalculatorPage() {
   return (
     <section className="section">
       <h2>Mortgage Calculator</h2>
       <p className="muted">
-        Tweak the inputs and see your estimated monthly payment update
-        immediately.
+        Tweak the inputs and see your estimated monthly payment update immediately.
       </p>
-      <MortgageCalculator />
+
+      {/* Wrap client interactive component inside Suspense for safety */}
+      <Suspense fallback={<p>Loading calculator...</p>}>
+        <MortgageCalculator />
+      </Suspense>
     </section>
   );
 }
